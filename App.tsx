@@ -1,117 +1,86 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import { Text, View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { NavigationProp } from '@react-navigation/native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+type Props = {
+  navigation: NavigationProp<any>;
+};
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
-
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+const App: React.FC<Props> = ({ navigation }) => {
+  const navigateTo = (screenName: string) => {
+    navigation.navigate(screenName);
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <ScrollView contentContainerStyle={styles.container}>
+      <TouchableOpacity style={styles.button} onPress={() => navigateTo('SIPCalculator')}>
+        <Text style={styles.buttonText}>SIP Calculator</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => navigateTo('SWPCalculator')}>
+        <Text style={styles.buttonText}>SWP Calculator</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => navigateTo('MutualFundsReturnCalculator')}>
+        <Text style={styles.buttonText}>Mutual Funds Return</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => navigateTo('PPFCalculator')}>
+        <Text style={styles.buttonText}>PPF Calculator</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => navigateTo('CAGRCalculator')}>
+        <Text style={styles.buttonText}>CAGR Calculator</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => navigateTo('HRACalculator')}>
+        <Text style={styles.buttonText}>HRA Calculator</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => navigateTo('RetirementCalculator')}>
+        <Text style={styles.buttonText}>Retirement</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => navigateTo('GSTCalculator')}>
+        <Text style={styles.buttonText}>GST Calculator</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => navigateTo('CompoundInterestCalculator')}>
+        <Text style={styles.buttonText}>Compound Interest</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => navigateTo('FDCalculator')}>
+        <Text style={styles.buttonText}>FD Calculator</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => navigateTo('RDCalculator')}>
+        <Text style={styles.buttonText}>RD Calculator</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => navigateTo('EMICalculator')}>
+        <Text style={styles.buttonText}>EMI Calculator</Text>
+      </TouchableOpacity>
+    </ScrollView>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  container: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f9f9f9',
+    padding: 20,
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  button: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#4CAF50',
+    width: '80%',  // Consistent button width
+    paddingVertical: 15, // Adequate padding for touch area
+    paddingHorizontal: 20,
+    marginBottom: 15, // Consistent spacing
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+    elevation: 6,
+    transition: 'background-color 0.3s ease-in-out', // Smooth transition for background color
   },
-  sectionDescription: {
-    marginTop: 8,
+  buttonText: {
+    color: '#fff',
     fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
+    fontWeight: '600',
   },
 });
 
