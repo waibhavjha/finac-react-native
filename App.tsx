@@ -55,14 +55,15 @@ const styles = StyleSheet.create({
   grid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
+    maxWidth: 340, // Ensures that three buttons fit in one row within the parent container width
   },
   button: {
     justifyContent: 'center',
     alignItems: 'center',
-    width: 100,
+    width: '30%', // Width set to 30% for each button to fit three in a row
     height: 100,
-    margin: 10,
+    marginVertical: 10,
     borderRadius: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
