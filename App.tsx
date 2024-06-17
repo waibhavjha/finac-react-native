@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { Text, View, TouchableOpacity, StyleSheet, ScrollView, Image } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
 
 type Props = {
@@ -11,44 +11,35 @@ const App: React.FC<Props> = ({ navigation }) => {
     navigation.navigate(screenName);
   };
 
+  const buttons = [
+    { screen: 'SIPCalculator', text: 'SIP Calculator', icon: require('./assets/icons/calculator.png'), color: '#4CAF50' },
+    { screen: 'SWPCalculator', text: 'SWP Calculator', icon: require('./assets/icons/asset.png'), color: '#FF9800' },
+    { screen: 'MutualFundsReturnCalculator', text: 'Mutual Funds Return', icon: require('./assets/icons/bank.png'), color: '#2196F3' },
+    { screen: 'PPFCalculator', text: 'PPF Calculator', icon: require('./assets/icons/dashboard.png'), color: '#9C27B0' },
+    { screen: 'CAGRCalculator', text: 'CAGR Calculator', icon: require('./assets/icons/economic.png'), color: '#F44336' },
+    { screen: 'HRACalculator', text: 'HRA Calculator', icon: require('./assets/icons/payment.png'), color: '#3F51B5' },
+    { screen: 'RetirementCalculator', text: 'Retirement', icon: require('./assets/icons/profits.png'), color: '#4CAF50' },
+    { screen: 'GSTCalculator', text: 'GST Calculator', icon: require('./assets/icons/stats.png'), color: '#FF9800' },
+    { screen: 'CompoundInterestCalculator', text: 'Compound Interest', icon: require('./assets/icons/calculator.png'), color: '#2196F3' },
+    { screen: 'FDCalculator', text: 'FD Calculator', icon: require('./assets/icons/asset.png'), color: '#9C27B0' },
+    { screen: 'RDCalculator', text: 'RD Calculator', icon: require('./assets/icons/bank.png'), color: '#F44336' },
+    { screen: 'EMICalculator', text: 'EMI Calculator', icon: require('./assets/icons/dashboard.png'), color: '#3F51B5' },
+  ];
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <TouchableOpacity style={styles.button} onPress={() => navigateTo('SIPCalculator')}>
-        <Text style={styles.buttonText}>SIP Calculator</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => navigateTo('SWPCalculator')}>
-        <Text style={styles.buttonText}>SWP Calculator</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => navigateTo('MutualFundsReturnCalculator')}>
-        <Text style={styles.buttonText}>Mutual Funds Return</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => navigateTo('PPFCalculator')}>
-        <Text style={styles.buttonText}>PPF Calculator</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => navigateTo('CAGRCalculator')}>
-        <Text style={styles.buttonText}>CAGR Calculator</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => navigateTo('HRACalculator')}>
-        <Text style={styles.buttonText}>HRA Calculator</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => navigateTo('RetirementCalculator')}>
-        <Text style={styles.buttonText}>Retirement</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => navigateTo('GSTCalculator')}>
-        <Text style={styles.buttonText}>GST Calculator</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => navigateTo('CompoundInterestCalculator')}>
-        <Text style={styles.buttonText}>Compound Interest</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => navigateTo('FDCalculator')}>
-        <Text style={styles.buttonText}>FD Calculator</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => navigateTo('RDCalculator')}>
-        <Text style={styles.buttonText}>RD Calculator</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => navigateTo('EMICalculator')}>
-        <Text style={styles.buttonText}>EMI Calculator</Text>
-      </TouchableOpacity>
+      <View style={styles.grid}>
+        {buttons.map((button, index) => (
+          <TouchableOpacity
+            key={index}
+            style={[styles.button, { backgroundColor: button.color }]}
+            onPress={() => navigateTo(button.screen)}
+          >
+            <Image source={button.icon} style={styles.icon} />
+            <Text style={styles.buttonText}>{button.text}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
     </ScrollView>
   );
 };
@@ -58,29 +49,38 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f9f9f9',
+    backgroundColor: 'coral',
     padding: 20,
+  },
+  grid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
   },
   button: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#4CAF50',
-    width: '80%',  // Consistent button width
-    paddingVertical: 15, // Adequate padding for touch area
-    paddingHorizontal: 20,
-    marginBottom: 15, // Consistent spacing
+    width: 100,
+    height: 100,
+    margin: 10,
     borderRadius: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
     shadowRadius: 5,
     elevation: 6,
-    transition: 'background-color 0.3s ease-in-out', // Smooth transition for background color
+  },
+  icon: {
+    width: 40,
+    height: 40,
+    resizeMode: 'contain',
   },
   buttonText: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: 12,
     fontWeight: '600',
+    textAlign: 'center',
+    marginTop: 5,
   },
 });
 

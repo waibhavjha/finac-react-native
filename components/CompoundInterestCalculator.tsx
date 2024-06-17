@@ -33,49 +33,51 @@ const CompoundInterestCalculator: React.FC = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Compound Interest Calculator</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Principal Amount (₹)"
-        keyboardType="numeric"
-        value={principal}
-        onChangeText={setPrincipal}
-        placeholderTextColor="#b0b0b0"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Annual Interest Rate (%)"
-        keyboardType="numeric"
-        value={rate}
-        onChangeText={setRate}
-        placeholderTextColor="#b0b0b0"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Time (Years)"
-        keyboardType="numeric"
-        value={time}
-        onChangeText={setTime}
-        placeholderTextColor="#b0b0b0"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Compounding Frequency (times per year)"
-        keyboardType="numeric"
-        value={compoundingFrequency}
-        onChangeText={setCompoundingFrequency}
-        placeholderTextColor="#b0b0b0"
-      />
-      <TouchableOpacity style={styles.button} onPress={calculateCompoundInterest}>
-        <Text style={styles.buttonText}>Calculate</Text>
-      </TouchableOpacity>
-      {error && <Text style={styles.error}>{error}</Text>}
-      {totalAmount !== null && (
-        <Text style={styles.result}>Total Amount: ₹{totalAmount}</Text>
-      )}
-      {compoundInterest !== null && (
-        <Text style={styles.result}>Compound Interest: ₹{compoundInterest}</Text>
-      )}
+      <View style={styles.card}>
+        <Text style={styles.title}>Compound Interest Calculator</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Principal Amount (₹)"
+          keyboardType="numeric"
+          value={principal}
+          onChangeText={setPrincipal}
+          placeholderTextColor="#b0b0b0"
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Annual Interest Rate (%)"
+          keyboardType="numeric"
+          value={rate}
+          onChangeText={setRate}
+          placeholderTextColor="#b0b0b0"
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Time (Years)"
+          keyboardType="numeric"
+          value={time}
+          onChangeText={setTime}
+          placeholderTextColor="#b0b0b0"
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Compounding Frequency (times per year)"
+          keyboardType="numeric"
+          value={compoundingFrequency}
+          onChangeText={setCompoundingFrequency}
+          placeholderTextColor="#b0b0b0"
+        />
+        <TouchableOpacity style={styles.button} onPress={calculateCompoundInterest}>
+          <Text style={styles.buttonText}>Calculate</Text>
+        </TouchableOpacity>
+        {error && <Text style={styles.error}>{error}</Text>}
+        {totalAmount !== null && (
+          <Text style={styles.result}>Total Amount: ₹{totalAmount}</Text>
+        )}
+        {compoundInterest !== null && (
+          <Text style={styles.result}>Compound Interest: ₹{compoundInterest}</Text>
+        )}
+      </View>
     </ScrollView>
   );
 };
@@ -83,15 +85,29 @@ const CompoundInterestCalculator: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#f4f4f4',
+    paddingVertical: 20,
+  },
+  card: {
+    width: '90%',
+    maxWidth: 400,
+    padding: 20,
+    borderRadius: 10,
+    backgroundColor: '#fff',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 3,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   title: {
     fontSize: 26,
     fontWeight: '700',
-    marginBottom: 30,
+    marginBottom: 20,
     color: '#333',
   },
   input: {
@@ -104,11 +120,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     fontSize: 18,
     backgroundColor: '#fff',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
-    elevation: 3,
+    color: '#333',
   },
   button: {
     backgroundColor: '#4CAF50',
@@ -130,6 +142,7 @@ const styles = StyleSheet.create({
   error: {
     color: 'red',
     marginTop: 10,
+    fontSize: 16,
   },
   result: {
     fontSize: 22,

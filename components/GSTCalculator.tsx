@@ -29,33 +29,35 @@ const GSTCalculator: React.FC = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>GST Calculator</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Initial Amount (₹)"
-        keyboardType="numeric"
-        value={initialAmount}
-        onChangeText={setInitialAmount}
-        placeholderTextColor="#b0b0b0"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="GST Rate (%)"
-        keyboardType="numeric"
-        value={gstRate}
-        onChangeText={setGstRate}
-        placeholderTextColor="#b0b0b0"
-      />
-      <TouchableOpacity style={styles.button} onPress={calculateGST}>
-        <Text style={styles.buttonText}>Calculate</Text>
-      </TouchableOpacity>
-      {error && <Text style={styles.error}>{error}</Text>}
-      {gstAmount !== null && (
-        <Text style={styles.result}>GST Amount: ₹{gstAmount}</Text>
-      )}
-      {totalAmount !== null && (
-        <Text style={styles.result}>Total Amount: ₹{totalAmount}</Text>
-      )}
+      <View style={styles.card}>
+        <Text style={styles.title}>GST Calculator</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Initial Amount (₹)"
+          keyboardType="numeric"
+          value={initialAmount}
+          onChangeText={setInitialAmount}
+          placeholderTextColor="#b0b0b0"
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="GST Rate (%)"
+          keyboardType="numeric"
+          value={gstRate}
+          onChangeText={setGstRate}
+          placeholderTextColor="#b0b0b0"
+        />
+        <TouchableOpacity style={styles.button} onPress={calculateGST}>
+          <Text style={styles.buttonText}>Calculate</Text>
+        </TouchableOpacity>
+        {error && <Text style={styles.error}>{error}</Text>}
+        {gstAmount !== null && (
+          <Text style={styles.result}>GST Amount: ₹{gstAmount}</Text>
+        )}
+        {totalAmount !== null && (
+          <Text style={styles.result}>Total Amount: ₹{totalAmount}</Text>
+        )}
+      </View>
     </ScrollView>
   );
 };
@@ -63,15 +65,29 @@ const GSTCalculator: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    padding: 20,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#f5f5f5',
+    paddingVertical: 20,
+  },
+  card: {
+    width: '90%',
+    maxWidth: 400, // Limit maximum width for larger screens
+    padding: 20,
+    borderRadius: 10,
+    backgroundColor: '#fff',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 3,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   title: {
     fontSize: 28,
     fontWeight: '700',
-    marginBottom: 30,
+    marginBottom: 20,
     color: '#333',
   },
   input: {
@@ -84,11 +100,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     fontSize: 18,
     backgroundColor: '#fff',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
-    elevation: 3,
+    color: '#333',
   },
   button: {
     backgroundColor: '#008080',

@@ -31,7 +31,7 @@ const RDCalculator: React.FC = () => {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView contentContainerStyle={styles.card}>
       <Text style={styles.title}>RD Calculator</Text>
       <TextInput
         style={styles.input}
@@ -57,7 +57,7 @@ const RDCalculator: React.FC = () => {
         onChangeText={setTime}
         placeholderTextColor="#b0b0b0"
       />
-      <Button title="Calculate" onPress={calculateRD} />
+      <Button title="Calculate" onPress={calculateRD} color="#008080" />
       {error && <Text style={styles.error}>{error}</Text>}
       {maturityAmount !== null && (
         <Text style={styles.result}>Maturity Amount: ₹{maturityAmount}</Text>
@@ -70,18 +70,23 @@ const RDCalculator: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
+  card: {
+    backgroundColor: '#fff',
+    borderRadius: 10,
     padding: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f5f5f5',
+    margin: 10,
+    alignItems: 'center', // Center content horizontally
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+    elevation: 3,
   },
   title: {
     fontSize: 28,
     fontWeight: '700',
-    marginBottom: 30,
-    color: '#333',
+    marginBottom: 20,
+    color: '#008080', // Updated title color
   },
   input: {
     width: '100%',
@@ -92,29 +97,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     marginBottom: 15,
     fontSize: 18,
-    backgroundColor: '#fff',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
-    elevation: 3,
-  },
-  button: {
-    backgroundColor: '#008080',
-    width: '100%',
-    paddingVertical: 15,
-    borderRadius: 25,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-    elevation: 5,
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: '600',
+    backgroundColor: '#f9f9f9', // Updated input background color
+    color: '#333', // Updated input text color
   },
   error: {
     color: 'red',
@@ -124,7 +108,7 @@ const styles = StyleSheet.create({
   result: {
     fontSize: 22,
     marginTop: 20,
-    color: '#008080',
+    color: '#008080', // Updated result text color
   },
 });
 
