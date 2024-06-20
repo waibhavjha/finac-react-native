@@ -1,6 +1,8 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, StyleSheet, ScrollView, Image } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
+import tw from "twrnc";
+
 
 type Props = {
   navigation: NavigationProp<any>;
@@ -49,7 +51,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'coral',
+    backgroundColor: 'white',
     padding: 20,
   },
   grid: {
